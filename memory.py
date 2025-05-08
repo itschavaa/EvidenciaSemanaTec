@@ -2,10 +2,13 @@ from random import *
 from turtle import *
 from freegames import path
 
+tileNumber = int(input("Enter desired number of tiles: "))
+
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list(range(int((tileNumber**2) / 2))) * 2
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * (tileNumber**2)
+
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -19,13 +22,16 @@ def square(x, y):
         left(90)
     end_fill()
 
+
 def index(x, y):
     "Convert (x, y) coordinates to tiles index."
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    return int((x + 200) // 50 + ((y + 200) // 50) * tileNumber)
+
 
 def xy(count):
     "Convert tiles count to (x, y) coordinates."
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    return (count % tileNumber) * 50 - 200, (count // tileNumber) * 50 - 200
+
 
 def tap(x, y):
     "Update mark and hidden tiles based on tap."
@@ -39,6 +45,7 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
+
 def draw():
     "Draw image and tiles."
     clear()
@@ -46,7 +53,7 @@ def draw():
     shape(car)
     stamp()
 
-    for count in range(64):
+    for count in range(tileNumber**2):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -62,6 +69,7 @@ def draw():
 
     update()
     ontimer(draw, 100)
+
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
