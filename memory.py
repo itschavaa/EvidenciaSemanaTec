@@ -8,6 +8,7 @@ car = path('car.gif')
 tiles = list(range(int((tileNumber**2) / 2))) * 2
 state = {'mark': None}
 hide = [True] * (tileNumber**2)
+tileSize = 400 // tileNumber
 
 
 def square(x, y):
@@ -18,19 +19,19 @@ def square(x, y):
     color('black', 'white')
     begin_fill()
     for count in range(4):
-        forward(50)
+        forward(tileSize)
         left(90)
     end_fill()
 
 
 def index(x, y):
     "Convert (x, y) coordinates to tiles index."
-    return int((x + 200) // 50 + ((y + 200) // 50) * tileNumber)
+    return int((x + 200) // tileSize + ((y + 200) // tileSize) * tileNumber)
 
 
 def xy(count):
     "Convert tiles count to (x, y) coordinates."
-    return (count % tileNumber) * 50 - 200, (count // tileNumber) * 50 - 200
+    return (count % tileNumber) * tileSize - 200, (count // tileNumber) * tileSize - 200
 
 
 def tap(x, y):
@@ -72,7 +73,7 @@ def draw():
 
 
 shuffle(tiles)
-setup(420, 420, 370, 0)
+setup(440, 440)
 addshape(car)
 hideturtle()
 tracer(False)
