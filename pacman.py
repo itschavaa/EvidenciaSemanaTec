@@ -154,7 +154,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)  # Calls move() again after 100 ms
+    ontimer(move, 50)  # Calls move() again after 50 ms
 
 
 # Changes Pacman's direction if valid
