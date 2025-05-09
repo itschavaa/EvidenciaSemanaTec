@@ -46,6 +46,10 @@ def tap(x, y):
     spot = index(x, y)
     mark = state['mark']
 
+    "Ignore already revealed tiles"
+    if not hide[spot]:
+        return
+
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
