@@ -2,7 +2,12 @@ from random import *
 from turtle import *
 from freegames import path
 
-tileNumber = int(input("Enter desired number of tiles: "))
+
+while True:
+    tileNumber = int(input("Enter desired number of tiles: "))
+    if tileNumber % 2 == 0:
+        break
+    print("Invalid value: must be divisible by two.")
 
 car = path('car.gif')
 tiles = list(range(int((tileNumber**2) / 2))) * 2
