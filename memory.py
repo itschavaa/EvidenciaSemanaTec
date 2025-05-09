@@ -14,6 +14,7 @@ tiles = list(range(int((tileNumber**2) / 2))) * 2
 state = {'mark': None}
 hide = [True] * (tileNumber**2)
 tileSize = 400 // tileNumber
+revealedTiles = 0
 
 
 def square(x, y):
@@ -40,6 +41,7 @@ def xy(count):
 
 
 def tap(x, y):
+    global revealedTiles
     "Update mark and hidden tiles based on tap."
     spot = index(x, y)
     mark = state['mark']
@@ -50,6 +52,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        revealedTiles += 1
+        if revealedTiles == tileNumber * 2:
+            print("All tiles have been revealed.")
 
 
 def draw():
