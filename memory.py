@@ -53,6 +53,7 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
         revealedTiles += 1
+        print(f"{revealedTiles} pair(s) have been revealed")
         if revealedTiles == tileNumber * 2:
             print("All tiles have been revealed.")
 
